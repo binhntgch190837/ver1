@@ -1,0 +1,333 @@
+#book-container {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 10%;
+}
+#book-table{
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+#book-image{
+    height: 200px;
+    width: 150px;
+}
+#category-sort{
+    column-count: 2;
+    width: 500px;
+}
+.dropdown-category{
+    cursor: pointer;
+    margin-left: 10%;
+    color: black !important;
+}
+#age-sort{
+    width: 30px;
+    margin-left: 140px;
+    text-align: center;
+}
+.dropdown-age{
+    cursor: pointer;
+    margin-left: 10%;
+    color: black !important;
+}
+#filter-container{
+    display: flex;
+}
+#filter-content{
+}
+#book-filter{
+    display: flex;
+    width: 500px;
+}
+#date-filter{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 550px;
+    height: 180px;
+    border-radius: .25rem;
+    background-color: #6c757d;
+}
+#datepicker-submit{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 19px;
+    margin-left: 26%;
+    width: 505px;
+    height: 50px;
+}
+input {
+    padding: 22px 15px !important;
+    border: 1px solid #CFD8DC !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+    box-sizing: border-box;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #1976D2 !important;
+    outline-width: 0;
+}
+
+.fa-calendar {
+  position: absolute;
+  top: 13px;
+  font-size: 20px;
+  color: #1976D2;
+  z-index: 1000;
+}
+
+#fa-1 {
+  left: calc(50% - 40px);
+}
+
+#fa-2 {
+  left: calc(100% - 40px);
+}
+
+.form-control-placeholder {
+    position: absolute;
+    top: -10px !important;
+    padding: 12px 2px 0 2px;
+    opacity: 0.5;
+}
+
+#end-p {
+  left: calc(50% + 4px);
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+    font-size: 95%;
+    top: 10px;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+}
+
+::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #BDBDBD;
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.datepicker {
+  background-color: #fff;
+  border-radius: 0 !important;
+  align-content: center !important;
+  padding: 0 !important;
+}
+
+.datepicker-dropdown {
+  top: 180px !important;
+  left: calc(50% - 173.5px) !important;
+  border-right: #1976D2;
+  border-left: #1976D2;
+}
+
+.datepicker-dropdown.datepicker-orient-left:before {
+  left: calc(50% - 6px) !important;
+}
+
+.datepicker-dropdown.datepicker-orient-left:after {
+  left: calc(50% - 5px) !important;
+  border-bottom-color: #1976D2;
+}
+
+.datepicker-dropdown.datepicker-orient-right:after {
+  border-bottom-color: #1976D2;
+}
+
+.datepicker table tr td.today, span.focused {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#FFF3E0, #FFE0B2);
+}
+
+thead tr:nth-child(2) {
+  background-color: #1976D2 !important;
+}
+
+/*Weekday title*/
+thead tr:nth-child(3) th {
+  font-weight: bold !important;
+  padding: 20px 10px !important;
+  color: #BDBDBD !important;
+}
+
+tbody tr td {
+  padding: 10px !important;
+}
+
+tfoot tr:nth-child(2) th {
+  padding: 10px !important;
+  border-top: 1px solid #CFD8DC !important;
+}
+
+.cw {
+  font-size: 14px !important;
+  background-color: #E8EAF6 !important;
+  border-radius: 0px !important;
+  padding: 0px 20px !important;
+  margin-right: 10px solid #fff !important;
+}
+
+.old, .day, .new {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 0px !important;
+}
+
+.day.old, .day.new {
+  color: #E0E0E0 !important;
+}
+
+.day.old:hover, .day.new:hover {
+  border-radius: 50% !important;
+}
+
+.old-day:hover, .day:hover, .new-day:hover, .month:hover, .year:hover, .decade:hover, .century:hover {
+  border-radius: 50% !important;
+  background-color: #eee;
+}
+
+.active {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#1976D2, #1976D2) !important;
+  color: #fff !important;
+}
+
+.range-start, .range-end {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#1976D2, #1976D2) !important;
+}
+
+.range {
+  background-color: #E3F2FD !important;
+}
+
+.prev, .next, .datepicker-switch {
+  border-radius: 0 !important;
+  padding: 10px 10px 10px 10px !important;
+  font-size: 18px;
+  opacity: 0.7;
+  color: #fff;
+}
+
+.prev:hover, .next:hover, .datepicker-switch:hover {
+  background-color: inherit !important;
+  opacity: 1;
+}
+
+@media screen and (max-width: 726px) {
+  .datepicker-dropdown.datepicker-orient-right:before {
+    right: calc(50% - 6px);
+  }
+
+  .datepicker-dropdown.datepicker-orient-right:after {
+    right: calc(50% - 5px);
+  }
+}
+#datepicker-container{
+    width: 520px !important;
+    padding-top: 5%;
+}
+#datepicker-range{
+    width: 550px;
+    margin-top: 10%;
+}
+.input-with-icon {
+    position: relative;
+    display: inline-block;
+}
+.input-with-icon input[type="text"] {
+    padding-right: 25px; /* make room for the icon */
+}
+.input-with-icon span {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+#start-date-icon{
+    display: flex !important;
+    height: 40px;
+    width: 25px;
+}
+#end-date-icon{
+    display: flex !important;
+    height: 40px;
+    width: 25px;
+}
+#search-content{
+    margin-left: 5%;
+    width: 600px;
+}
+#form-search{
+    background-color: #6c757d;
+    border-radius: .25rem;
+    height: 258px;
+    width: 510px;
+    margin-left: -5%;
+}
+.search-button {
+    background-color:#E51284;
+    color:#fff;
+    cursor:pointer !important;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+.search-button:hover {
+    background-color:#ea419c;
+    color:#fff;
+    cursor:pointer;
+}
+.search-txt-input{
+    width: 400px;
+    height: 60px;
+    margin-left: 5%;
+}
+.search-label{
+    color: white;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+#title-form{
+    display: flex;
+}
+#author-form{
+    display: flex;
+}
+#add-book{
+    margin-top: -5px;
+    margin-bottom: 20px;
+    height: 50px;
+    width: 200px;
+}
+

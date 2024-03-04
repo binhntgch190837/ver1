@@ -1,0 +1,27 @@
+.update-form{
+    margin-top: 3% !important;
+    background-color: antiquewhite;
+    border-radius: 12px;
+    width: 130vh !important;
+    margin-left: 7%;
+}
+
+#image-container{
+    margin-left: -7%;
+    margin-top: 2%;
+}
+
+#confirm-changes{
+    margin-top: -1%;
+    margin-bottom: 3%;
+    margin-left: -11%;
+    width: 48%;
+    height: 7vh;
+}
+
+#discard-changes{
+    margin-top: -1%;
+    margin-left: 5%;
+    height: 7vh;
+    width: 48%;
+}

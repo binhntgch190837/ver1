@@ -1,0 +1,22 @@
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+.table-container{
+    padding-top: 120px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#user-image{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#user-table{
+    border-radius: 12px;
+    background-color: antiquewhite;
+}
+.user-info{
+    text-align: center;
+}

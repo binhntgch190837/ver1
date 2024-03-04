@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Index</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/css/admin/user-index.css}" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+<div th:replace="~{admin/menu :: menuBar}"></div>
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class='bx bx-menu sidebarBtn'></i>
+      <span>User Index</span>
+    </div>
+    <button id="personal-profile">
+      <span style="border-right: 1px solid #ccc; padding-right: 10px;" th:text="${user_detail.username}"></span>
+      <span id="personal-role" th:text="${role}"></span>
+    </button>
+  </nav>
+  <div class="table-container">
+    <div style="display: flex;">
+      <h2><span th:text="${user_number}"></span> registered users</h2>
+      <button type="button" class="btn btn-success" style="margin-bottom: 3%; margin-left: 65%;"
+              th:onclick="window.location.href='/admin/add-user'">Add New User
+      </button>
+    </div>
+    <table class="table" id="user-table">
+      <thead class="thead-dark">
+      <tr>
+        <th class="user-info" scope="col">Username</th>
+        <th class="user-info" scope="col">Image</th>
+        <th class="user-info" scope="col">Email</th>
+        <th class="user-info" scope="col">Phone Number</th>
+        <th class="user-info" scope="col">Status</th>
+        <th class="user-info" scope="col">Last updated</th>
+        <th class="user-info" scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ( ${users} )">
+        <td th:text="${user.username}"></td>
+        <td>
+          <img th:src="${user.image_url}" id="user-image"/>
+        </td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phone_number}"></td>
+        <td th:text="${user.status}"></td>
+        <td th:text="${user.last_updated}"></td>
+        <td style="max-width: 200vh; display: flex; margin-left: -10px;">
+          <a type="button" style="margin-left: 10px;" class="btn btn-primary" th:href="@{/admin/edit-user/{id}(id=@{${user.id}})}">
+            Edit
+          </a>
+          <a type="button" style="margin-left: 10px;" class="btn btn-secondary" th:href="@{/admin/user-history/{id}(id=@{${user.id}})}">
+            History
+          </a>
+          <a type="button" style="margin-left: 5px;" class="btn btn-danger" th:href="@{/admin/delete-user/{id}(id=@{${user.id}})}">
+            Delete
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</body>
+</html>

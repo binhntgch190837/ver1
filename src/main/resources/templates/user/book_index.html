@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Main menu</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/book-index.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/book-index.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/view-advertisement.css}">
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:replace="~{user/home_bar :: userHomepage}"></div>
+<section>
+    <div th:replace="~{user/advertisement_modal :: advertisement}"></div>
+    <div
+            id="intro"
+            class="bg-image"
+            style="
+            background-image: url('https://i.pinimg.com/736x/23/cb/71/23cb7143f892c49537c8a55f5ee21988.jpg');
+            height: 100vh;
+          "
+    >
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.2); overflow-y: auto;">
+            <h1 id="page-title">Online Books</h1>
+            <div class="list-container">
+                <div class="filter-book">
+                    <div class="filter-category-age">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; width: 150px;">
+                                Category
+                            </button>
+                            <ul class="dropdown-menu" id="category-sort" aria-labelledby="dropdownCategory">
+                                <li class="dropdown-category"><a class="category-option" th:href="@{/user/book-index}" >All</a></li>
+                                <li class="dropdown-category" th:each="category : ${categories}">
+                                    <a th:href="@{/user/book-index(category_name=${category})}" class="category-option" th:text="${category}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAge" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    style="height: 50px; margin-left: 15px; width: 200px;">
+                                Recommended Age
+                            </button>
+                            <ul class="dropdown-menu" style="width: 200px !important;" aria-labelledby="dropdownAge">
+                                <li class="age-option">
+                                    <a style="color: black;" th:href="@{/user/book-index}" class="dropdown-age">All</a>
+                                </li>
+                                <li th:each="age : ${ages}" class="age-option">
+                                    <a style="color: black;" th:href="@{/user/book-index(recommended_age=${age})}" class="dropdown-age" th:text="${age}"></a><span style="color: black;">++</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="date-filter" style="margin-left: 20px; margin-right: 20px; width: 365px !important;">
+                        <div class="container px-1 px-sm-5 mx-auto"  id="datepicker-container">
+                            <form autocomplete="off" style="margin-left: -188px">
+                                <div class="flex-row d-flex justify-content-center">
+                                    <div class="col-lg-6 col-11 px-1">
+                                        <div class="input-group input-daterange" id="datepicker-range">
+                                            <div class="input-with-icon">
+                                                <input style="border-radius: 5px; width: 158px;" type="text" id="start" name="startDate" class="form-control text-left mr-2 date-input">
+                                                <label class="ml-3 form-control-placeholder" id="start-p" for="start" style="color: white; margin-left: -2px !important;">Start Date:</label>
+                                                <span>
+                                                <svg style="margin-right: 12px;" xmlns="http://www.w3.org/2000/svg" id="start-date-icon" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                                </svg>
+                                            </span>
+                                            </div>
+                                            <div class="input-with-icon">
+                                                <input style="border-radius: 5px; width: 158px;" type="text" id="end" name="endDate" class="form-control text-left ml-2">
+                                                <label class="ml-3 form-control-placeholder" id="end-p" for="end" style="color: white; margin-left: -50% !important;">End Date:</label>
+                                                <span>
+                                                <svg style="margin-right: 4px;" xmlns="http://www.w3.org/2000/svg" id="end-date-icon" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                                </svg>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a type="button" style="width: 330px;" class="btn btn-danger" id="datepicker-submit">
+                                    Filter By Published Date
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="search-book">
+                        <div class="search-title">
+                            <h2 class="search-name">Search by title</h2>
+                            <form class="form-inline">
+                                <input style="width: 250px;" class="form-control mr-sm-2" type="search" name="title" placeholder="Enter the title" aria-label="Search">
+                                <button style="width: 105px;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                        <div class="search-author" style="margin-top: 10px;">
+                            <h2 class="search-name">Search by author</h2>
+                            <form class="form-inline">
+                                <input style="width: 250px;" class="form-control mr-sm-2" type="search" name="author" placeholder="Enter the author" aria-label="Search">
+                                <button style="width: 105px;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-index">
+                    <ul class="book-list">
+                        <li th:each="book : ${books}">
+                            <div class="book-item">
+                                <img th:src="${book.image_url}" class="book-image"/>
+                                <button id="preview-book" class="btn btn-success"
+                                        data-toggle="modal" th:data-target="'#previewBook-' + ${book.id}">
+                                    Preview
+                                </button>
+                                <a type="button" id="add-favorite" class="btn btn-secondary" th:href="@{/user/add-book-to-favorite/{id}(id=${book.id})}">Add favorite</a>
+                            </div>
+                            <div th:replace="~{user/book_preview :: preview-book}" th:with="book=${book}"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="@{/js/user-datepicker-selection.js}"></script>
+<script th:src="@{/js/advertisement.js}"></script>
+</body>
+</html>

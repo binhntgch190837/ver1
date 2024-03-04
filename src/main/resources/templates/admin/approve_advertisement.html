@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approve Advertisement</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+    <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/add-book.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/advertisement-management.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+</head>
+<body>
+<div th:replace="~{admin/menu :: menuBar}"></div>
+<section class="home-section">
+    <nav>
+        <div class="sidebar-button">
+            <i class='bx bx-menu sidebarBtn'></i>
+            <span>Approve Advertisement Form</span>
+        </div>
+        <button id="personal-profile">
+            <span style="border-right: 1px solid #ccc; padding-right: 10px;" th:text="${user_detail.username}"></span>
+            <span id="personal-role" th:text="${role}"></span>
+        </button>
+    </nav>
+    <div id="adding-content">
+        <div id="form-container">
+            <h1 style="text-align: center; margin-bottom: 5%;">Approve New Advertisement</h1>
+            <form th:action="@{/admin/approve-advertisement}" th:object="${advertisement}" enctype="multipart/form-data" th:method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline" style="margin-left: 10%;">
+                            <label class="form-label" for="title"
+                            >Enter Title:</label
+                            >
+                            <input
+                                    type="text"
+                                    id="title"
+                                    style="border: 1px solid #4f4f4f; width: 400px;"
+                                    th:field="*{title}"
+                                    class="form-control form-control-lg"
+                            />
+                            <div
+                                    class="alert alert-warning"
+                                    style="width: 400px;"
+                                    th:if="${#fields.hasErrors('title')}"
+                                    th:errors="*{title}"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label class="form-label" for="company_name"
+                            >Enter Company Name:</label>
+                            <input
+                                    type="text"
+                                    id="company_name"
+                                    style="border: 1px solid #4f4f4f; width: 400px;;"
+                                    th:field="*{company_name}"
+                                    class="form-control form-control-lg"
+                            />
+                            <div
+                                    class="alert alert-warning"
+                                    style="width: 400px;"
+                                    th:if="${#fields.hasErrors('company_name')}"
+                                    th:errors="*{company_name}"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline" style="margin-left: 10%;">
+                            <label class="form-label" for="company_email"
+                            >Enter Company Email:</label
+                            >
+                            <input
+                                    type="text"
+                                    id="company_email"
+                                    style="border: 1px solid #4f4f4f; width: 400px;"
+                                    th:field="*{company_email}"
+                                    class="form-control form-control-lg"
+                            />
+                            <div
+                                    class="alert alert-warning"
+                                    style="width: 400px;"
+                                    th:if="${#fields.hasErrors('company_email')}"
+                                    th:errors="*{company_email}"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <h6 class="mb-2 pb-2 pt-1">Status:</h6>
+                        <div
+                                th:each="data: ${status}"
+                                style="display: inline-block"
+                        >
+                            <div class="form-check form-check-inline">
+                                <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="inlineRadioOptions"
+                                        id="status"
+                                        th:value="${data}"
+                                        th:field="*{status}"
+                                />
+                                <label
+                                        class="form-check-label"
+                                        for="status"
+                                        th:text="${data}"
+                                ></label>
+                            </div>
+                        </div>
+                        <div
+                                class="alert alert-warning"
+                                style="width: 400px;"
+                                th:if="${#fields.hasErrors('status')}"
+                                th:errors="*{status}"
+                        ></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline" style="margin-left: 10%; margin-top: -3%;">
+                            <label class="form-label" for="image_url"
+                            >Image</label
+                            >
+                            <input
+                                    type="text"
+                                    id="image_url"
+                                    style="border: 1px solid #4f4f4f; width: 400px;"
+                                    th:field="*{image_url}"
+                                    class="form-control form-control-lg"
+                            />
+                            <div
+                                    class="alert alert-warning"
+                                    style="width: 400px;"
+                                    th:if="${#fields.hasErrors('image_url')}"
+                                    th:errors="*{image_url}"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline" style="margin-left: 10%; margin-top: -3%;">
+                            <label class="form-label" for="link_url" style="margin-left: -50px;"
+                            >Link URL</label
+                            >
+                            <input
+                                    type="text"
+                                    id="link_url"
+                                    style="border: 1px solid #4f4f4f; width: 400px; margin-left: -50px;"
+                                    th:field="*{link_url}"
+                                    class="form-control form-control-lg"
+                            />
+                            <div
+                                    class="alert alert-warning"
+                                    style="width: 400px; margin-left: -50px;"
+                                    th:if="${#fields.hasErrors('link_url')}"
+                                    th:errors="*{link_url}"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4" style="margin-top: -1%;">
+                        <label for="start-date-input" style="margin-left: 10%;">Select Start Date:</label>
+                        <div class="row d-flex justify-content-sm-center px-2">
+                            <div class="form-group row">
+                                <input type="text" id="start-date-input" class="datepicker date-input-style mr-2" placeholder="Select Start Date" name="start_day"><br>
+                            </div>
+                        </div>
+                        <div
+                                class="alert alert-warning"
+                                style="width: 400px; margin-left: 10%; margin-top: -3%;"
+                                th:if="${#fields.hasErrors('start_day')}"
+                                th:errors="*{start_day}"
+                        ></div>
+                    </div>
+                    <div class="col-md-6 mb-4" style="margin-top: -1%; margin-left: -5%;">
+                        <label for="end-date-input" style="margin-left: 10%;">Select End Date:</label>
+                        <div class="row d-flex justify-content-sm-center px-2">
+                            <div class="form-group row">
+                                <input type="text" id="end-date-input" class="datepicker date-input-style mr-2" placeholder="Select End Date" name="end_day"><br>
+                            </div>
+                        </div>
+                        <div
+                                class="alert alert-warning"
+                                style="width: 400px; margin-left: 10%; margin-top: -3%;"
+                                th:if="${#fields.hasErrors('end_day')}"
+                                th:errors="*{end_day}"
+                        ></div>
+                    </div>
+                </div>
+
+                <div style="display: flex;">
+                    <div style="margin-top: -1%; margin-left: 5%;">
+                        <label for="start_time">Select start time:</label>
+                        <input type="time" id="start_time" name="start_time">
+                        <div
+                                class="alert alert-warning"
+                                style="width: 400px;"
+                                th:if="${#fields.hasErrors('start_time')}"
+                                th:errors="*{start_time}"
+                        ></div>
+                    </div>
+                    <div style="margin-top: -1%; margin-left: 5%;">
+                        <label for="end_time">Select end time:</label>
+                        <input type="time" id="end_time" name="end_time">
+                        <div
+                                class="alert alert-warning"
+                                style="width: 400px;"
+                                th:if="${#fields.hasErrors('end_time')}"
+                                th:errors="*{end_time}"
+                        ></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary action-btn-style">Confirm Approval</button>
+                <button type="button" class="btn btn-secondary action-btn-style"
+                        th:onclick="window.location.href='/admin/view-advertisement'">
+                    Cancel Approval
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+          format: 'dd-mm-yyyy',
+          todayHighlight: true,
+          toggleActive: true
+      });
+    });
+  </script>
+</body>
+</html>

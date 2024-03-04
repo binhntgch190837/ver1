@@ -1,0 +1,16 @@
+.history-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#user-histories{
+    width: 80%;
+    border: 1px solid;
+}
+
+#exit-history{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 76.5%;
+}

@@ -1,0 +1,70 @@
+.recommended-books{
+    border-radius: 12px;
+    background-color: aliceblue;
+    margin-top: 40px;
+}
+
+.introduce-words{
+    padding-top: 10px;
+    margin-left: 20px;
+}
+
+.book-index-list{
+    list-style: none;
+    display: flex;
+    margin-top: 20px;
+    margin-left: -20px;
+    margin-right: 10px;
+}
+
+.recommended-book-container{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.book-avatar{
+    height: 230px;
+    width: 160px;
+}
+
+#foresee-book{
+    margin-top: 10px;
+    width: 160px;
+    background-color: seagreen;
+    border: none;
+}
+
+#add-to-favorite{
+    margin-top: 10px;
+    width: 160px;
+    background-color: deeppink;
+    border: none;
+}
+
+.recommended-friends{
+    margin-top: 30px;
+    border-radius: 12px;
+    background-color: aliceblue;
+    margin-bottom: 50px;
+}
+
+.recommended-users{
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+}
+
+.user-container{
+    text-align: center;
+    width: 120px;
+    height: 150px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.user-avatar{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+

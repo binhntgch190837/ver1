@@ -1,0 +1,198 @@
+#page-title{
+    color: white;
+    font-size: 50px;
+    margin-top: 90px;
+    text-align: center;
+}
+
+.page-container{
+    margin-top: 50vh;
+    height: 100%;
+}
+
+.list-container{
+    display: flex;
+    height: 100vh;
+    margin-top: 30px;
+}
+
+.filter-category-age{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 18px;
+}
+
+#category-sort{
+    column-count: 3;
+    width: 500px;
+}
+
+.dropdown-category{
+    margin-left: 10px;
+}
+
+.category-option{
+    color: black !important;
+}
+
+.age-option{
+    text-align: center;
+}
+
+.search-book{
+    margin-left: 20px;
+    margin-top: -10px;
+}
+
+.search-name{
+    font-size: 22px;
+    color; darkslategray
+}
+
+.filter-book{
+    width: 400px;
+    height: 470px;
+    background-color: floralwhite;
+    margin-left: 55px;
+    border-radius: 12px;
+}
+
+.book-index{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 1000px;
+    max-height: 800px;
+    min-height: 400px;
+    overflow-y: auto;
+    background-color: burlywood;
+    border-radius: 12px;
+}
+
+.book-list{
+    list-style: none;
+    display: flex;
+    margin-top: 15px;
+    margin-left: -35px;
+    flex-wrap: wrap;
+}
+
+.book-item{
+    margin-left: 40px;
+    margin-top: 15px;
+    border-radius: 12px;
+    background-color: ghostwhite;
+    height: 330px;
+    width: 200px;
+}
+
+.book-image{
+    width: 150px;
+    height: 200px;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+#preview-book{
+    background-color: darkcyan;
+    border: none;
+    margin-top: 10px;
+    width: 150px;
+    margin-left: 25px;
+}
+
+#add-favorite{
+    margin-top: 10px;
+    width: 150px;
+    margin-left: 25px;
+    background-color: deeppink;
+    border:none;
+}
+
+.book-detail-image{
+    width: 200px;
+    height: 260px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.book-details{
+    margin-top: -10px;
+    margin-left: 30px;
+    max-width: 500px;
+    overflow-x: auto;
+}
+
+.info{
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.book-description{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.favorite-container{
+    margin-top: 50px;
+}
+
+.favorite-title{
+    font-size: 45px;
+    color: white;
+    text-align: center;
+}
+
+.favorite-books{
+    margin-left: 5vh;
+    margin-top: -2.5vh;
+    background-color: antiquewhite;
+    width: 105vh;
+    max-height: 100%;
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+.favorite-list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2vh;
+    margin-left: -5vh;
+}
+
+#not-favorite{
+    width: 150px;
+    margin-left: 25px;
+    margin-top: 10px;
+    color: white;
+}
+
+.ad-favorite{
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.stay-advertise{
+    margin-left: 5vh;
+    margin-top: 4.5vh;
+    height: 100%;
+    width: 44vh;
+    border-radius: 12px;
+    text-align: center;
+    background-color: cornsilk;
+}
+
+.advertise-image{
+    width: 35vh;
+    height: 35vh;
+    margin-top: 1vh;
+    border-radius: 12px;
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.advertise-title{
+    color: black;
+    font-size: 3vh;
+}

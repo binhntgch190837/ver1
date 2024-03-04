@@ -1,0 +1,21 @@
+.card{
+    margin-top: 80px;
+    border-radius: 15px;
+}
+::-ms-reveal {
+    display: none;
+}
+#togglePass{
+    cursor: pointer;
+}
+#register-content{
+    overflow-y: scroll;
+    height: 600px;
+}
+#termAlert{
+    margin-top: 10px;
+    margin-left: -23px;
+}
+#customFile{
+    margin-top: 20px;
+}

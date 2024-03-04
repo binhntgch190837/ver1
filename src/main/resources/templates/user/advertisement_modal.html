@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/user/view-advertisement.css}">
+    <title>Auto-Show Modal</title>
+</head>
+<body>
+<div th:fragment="advertisement" class="ad-modal" id="myModal">
+    <div class="ad-modal-content" style="width: 80vh; margin-top: 4vh;">
+        <span class="close-ad" id="closeModal">&times;</span>
+        <a th:href="${first_ad.link_url}">
+            <h2 style="color: black;">Visit Now</h2>
+            <img class="ad-img" th:src="${first_ad.image_url}">
+            <h3 style="margin-top: 5%">
+                <span class="ad-title" th:text="${first_ad.title}"></span>
+            </h3>
+        </a>
+    </div>
+</div>
+
+<script th:src="@{advertisement.js}"></script>
+</body>
+</html>

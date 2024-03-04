@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New User</title>
+  <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/css/admin/add-user.css}" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet"
+  />
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+          rel="stylesheet"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+  ></script>
+</head>
+<body>
+<div th:replace="~{admin/menu :: menuBar}"></div>
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class='bx bx-menu sidebarBtn'></i>
+      <span>Add New User</span>
+    </div>
+    <button id="personal-profile" th:onclick="window.location.href='/admin/logout'">
+      <span style="border-right: 1px solid #ccc; padding-right: 10px;" th:text="${user_detail.username}"></span>
+      <span id="personal-role" th:text="${role}"></span>
+    </button>
+  </nav>
+  <div class="form-content">
+    <div class="form-container">
+      <h1 style="padding-top: 3%; text-align: center;">Create New Account</h1>
+      <form th:action="@{/admin/add-user}" th:object="${user}" th:method="post" style="padding-top: 4%">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="form-outline" style="margin-left: 10%;">
+              <label class="form-label" for="username"
+              >Username</label
+              >
+              <input
+                      type="text"
+                      id="username"
+                      style="border: 1px solid #4f4f4f; width: 400px;;"
+                      th:field="*{username}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('username')}"
+                      th:errors="*{username}"
+              ></div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-outline">
+              <label class="form-label" for="email"
+              >Email</label
+              >
+              <input
+                      type="text"
+                      id="email"
+                      style="border: 1px solid #4f4f4f; width: 400px;"
+                      th:field="*{email}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('email')}"
+                      th:errors="*{email}"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4 d-flex align-items-center">
+            <div class="form-outline datepicker w-100" style="margin-left: 10%;">
+              <label for="phone_number" class="form-label">Phone Number</label>
+              <input
+                      type="text"
+                      style="border: 1px solid #4f4f4f; width: 400px;"
+                      th:field="*{phone_number}"
+                      class="form-control form-control-lg"
+                      id="phone_number"
+              />
+
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('phone_number')}"
+                      th:errors="*{phone_number}"
+              ></div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <h6 class="mb-2 pb-2 pt-1">Status:</h6>
+            <div
+                    th:each="data: ${status}"
+                    style="display: inline-block"
+            >
+              <div class="form-check form-check-inline">
+                <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="status"
+                        th:value="${data}"
+                        th:field="*{status}"
+                />
+                <label
+                        class="form-check-label"
+                        for="status"
+                        th:text="${data}"
+                ></label>
+              </div>
+            </div>
+            <div
+                    class="alert alert-warning"
+                    style="width: 400px;"
+                    th:if="${#fields.hasErrors('status')}"
+                    th:errors="*{status}"
+            ></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4 pb-2">
+            <label class="form-label" for="password" style="margin-left: 10%;">Password</label>
+            <div class="input-group" id="show_hide_password" style="width: 400px; margin-left: 10%;">
+              <input
+                      type="password"
+                      id="password"
+                      style="border: 1px solid #4f4f4f; height: 45px; background-color: antiquewhite;"
+                      th:field="*{password}"
+                      class="form-control form-control-lg"
+                      autocomplete="off"
+              />
+              <div class="input-group-append">
+                                          <span class="input-group-text" style="height: 45px;"
+                                          ><i class="fa fa-eye-slash" id="togglePass" aria-hidden="true"></i
+                                          ></span>
+              </div>
+            </div>
+            <br />
+
+            <ul
+                    class="text-danger"
+                    th:each="error: ${#fields.errors('password')}"
+                    id="password-validation"
+            >
+              <li th:each="message : ${error.split(',')}">
+                <p class="error-message" th:text="${message}"></p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 mb-4 pb-2">
+            <label class="form-label" for="confirmPassword"
+            >Confirm Password</label
+            >
+
+            <input
+                    type="password"
+                    id="confirmPassword"
+                    style="border: 1px solid #4f4f4f; width: 400px; background-color: antiquewhite;"
+                    th:field="*{confirm_password}"
+                    class="form-control form-control-lg"
+                    autocomplete="off"
+            />
+            <div
+                    class="alert alert-warning"
+                    style="width: 400px;"
+                    th:if="${#fields.hasErrors('confirm_password')}"
+                    th:errors="*{confirm_password}"
+            ></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4 pb-2">
+            <div class="form-outline" style="margin-left: 10%; margin-top: -3%;">
+              <label class="form-label" for="user_image"
+              >User Image</label
+              >
+              <input
+                      type="text"
+                      id="user_image"
+                      style="border: 1px solid #4f4f4f; width: 400px;"
+                      th:field="*{image_url}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('image_url')}"
+                      th:errors="*{image_url}"
+              ></div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 pb-2">
+            <h6 class="mb-2 pb-2 pt-1">Role:</h6>
+            <div
+                    th:each="item: ${roles}"
+                    style="display: inline-block"
+            >
+              <div class="form-check form-check-inline">
+                <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="role"
+                        th:value="${item}"
+                        th:field="*{input_role}"
+                />
+                <label
+                        class="form-check-label"
+                        for="status"
+                        th:text="${item}"
+                ></label>
+              </div>
+            </div>
+            <div
+                    class="alert alert-warning"
+                    style="width: 400px;"
+                    th:if="${#fields.hasErrors('input_role')}"
+                    th:errors="*{input_role}"
+            ></div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button id="confirm-changes" type=submit
+                  class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+            Confirm Adding
+          </button>
+          <a type="button" th:href="@{/admin/user-index}" id="cancel-changes"
+                  class="btn btn-secondary btn-block btn-lg gradient-custom-4 text-body">
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{assets/password-strength-meter/password.min.js}"></script>
+<script th:src="@{/js/show-hide-password.js}"></script>
+</body>
+</html>

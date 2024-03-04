@@ -1,0 +1,35 @@
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+.form-content{
+    padding-top: 120px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.form-container{
+    background-color: antiquewhite;
+    border-radius: 12px;
+    width: 1000px;
+}
+#password-validation{
+    margin-left: 10%;
+    margin-right: 2%;
+}
+::-ms-reveal {
+    display: none;
+}
+#confirm-changes{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    color: white !important;
+}
+
+#cancel-changes{
+    margin-top: 0 !important;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    color: white !important;
+    background-color: slategrey;
+}

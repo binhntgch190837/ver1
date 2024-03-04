@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+    <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/book-details.css}" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+<div th:replace="~{admin/menu :: menuBar}"></div>
+<section class="home-section">
+    <nav>
+        <div class="sidebar-button">
+            <i class='bx bx-menu sidebarBtn'></i>
+            <span>Book Details</span>
+        </div>
+        <button id="personal-profile">
+            <span style="border-right: 1px solid #ccc; padding-right: 10px;" th:text="${user_detail.username}"></span>
+            <span id="personal-role" th:text="${role}"></span>
+        </button>
+    </nav>
+    <div id="view-container">
+        <div id="details-section">
+            <div id="book-details">
+                <div id="short-info">
+                    <div id="book-avatar">
+                        <img th:src="${book.image_url}" id="book-image"/>
+                    </div>
+                    <div id="book-info">
+                        <h2 class="info">Title: <span class="info" th:text="${book.title}"></span></h2>
+                        <h2 class="info">Category: <span class="info" th:text="${book_category}"></span></h2>
+                        <h2 class="info">Published Date: <span class="info" th:text="${published_date}"></span></h2>
+                        <h2 class="info">Recommended Age: <span class="info" th:text="${recommended_age}"></span> Above</h2>
+                        <h2 class="info">Total Page Number: <span class="info" th:text="${page}"></span></h2>
+                        <a class="btn btn-success btn-lg" style="margin-top: 3%;"
+                           th:href="${book.content}">
+                            Read & Download
+                        </a>
+                    </div>
+                </div>
+                <div class="book-description">
+                    <h2  style="font-family: serif;">Description:</h2>
+                    <p style="font-family: serif; margin-top: 2%; font-size: 18px;" th:text="${book.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

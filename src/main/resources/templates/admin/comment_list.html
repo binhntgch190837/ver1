@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Comments</title>
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet"
+  />
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/comment.css}"/>
+  <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+  ></script>
+</head>
+<body>
+<div th:fragment="comment-list">
+  <div class="modal fade" th:id="'viewComment-' + ${post.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width: 700px;">
+        <div class="card-body p-4">
+          <h4 class="text-center mb-4 pb-2">Comments section</h4>
+          <div class="row">
+            <div class="col">
+              <ul class="all-comments">
+                <li th:each="comment : ${post.comments}" class="comment-component">
+                  <div class="d-flex flex-start">
+                    <div class="flex-grow-1 flex-shrink-1">
+                      <div class="comment-info">
+                        <img class="rounded-circle shadow-1-strong me-3" alt="avatar" id="comment-avatar"
+
+                             th:src="${comment.creator.image_url}"
+                        />
+                        <div class="comment-option">
+                          <div class="comment-action">
+                            <p class="mb-1">
+                              <span th:text="${comment.creator.username}"></span>
+                              <span class="small" th:text="${' - ' + comment.updated_time}"></span>
+                            </p>
+                          </div>
+                          <p class="small mb-0" id="comment-text" th:text="${comment.text}"></p>
+                        </div>
+                      </div>
+                      <div class="comment-handles">
+                        <button class="handle-cmt" data-toggle="modal"
+                                th:data-target="'#replyComment-' + ${comment.id}">Reply</button>
+                        <button class="handle-cmt" data-toggle="modal"
+                                th:data-target="'#editComment-' + ${comment.id}" style="margin-left: 10px;"
+                        >
+                          Edit
+                        </button>
+                        <button class="handle-cmt" style="margin-left: 10px;"
+                                th:onclick="'window.location.href=\'' + @{/admin/delete-comment/} + ${comment.id} + '\''"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                      <ul style="list-style: none;">
+                        <li th:each="reply : ${comment.replies}">
+                          <div class="d-flex flex-start mt-4">
+                            <div class="flex-grow-1 flex-shrink-1" style="display: flex; margin-top: -2%:">
+                              <span class="reply-branch">&rarr;</span>
+                              <div class="reply-info">
+                                <img class="rounded-circle shadow-1-strong" alt="avatar" id="reply-avatar"
+                                     th:src="${reply.creator.image_url}"
+                                />
+                                <div class="comment-option">
+                                  <div class="comment-action">
+                                    <p class="mb-1">
+                                      <span th:text="${reply.creator.username}"></span>
+                                      <span class="small" th:text="${' - ' + reply.updated_time}"></span>
+                                    </p>
+                                  </div>
+                                  <p class="small mb-0" id="reply-text" th:text="${reply.text}"></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="reply-handles">
+                            <button class="handle-rep" data-toggle="modal"
+                                    th:data-target="'#replyComment-' + ${comment.id}">Reply</button>
+                            <button class="handle-rep" data-toggle="modal" style="margin-left: 10px;"
+                                    th:data-target="'#editReply-' + ${reply.id}" >
+                              Edit
+                            </button>
+                            <button class="handle-rep" style="margin-left: 10px;"
+                                    th:onclick="'window.location.href=\'' + @{/admin/delete-reply/} + ${reply.id} + '\''">
+                              Delete
+                            </button>
+                          </div>
+                          <div th:replace="~{admin/edit_reply :: edit-reply}" th:with="reply=${reply}"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div th:replace="~{admin/edit_comment :: edit-comment}" th:with="comment=${comment}"></div>
+                  <div th:replace="~{admin/reply_form :: reply-form}" th:with="comment=${comment}"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

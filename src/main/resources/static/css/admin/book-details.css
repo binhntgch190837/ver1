@@ -1,0 +1,43 @@
+#details-section{
+    margin-left: 10%;
+    padding-top: 10%;
+    margin-right: 10%;
+}
+#book-details{
+    background-color: beige;
+    border-radius: 12px;
+}
+#short-info{
+    display: flex;
+}
+#book-avatar{
+    flex-basis: 30%;
+    margin-top: 3%;
+    margin-left: 2%;
+}
+#book-image{
+    width: 300px;
+    height: 400px;
+    margin-left: 5%;
+}
+#book-info{
+    flex-basis: 70%;
+    margin-top: 3%;
+    margin-left: 6%;
+}
+
+.book-description{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+#description{
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-right: 3%;
+    padding-bottom: 3%;
+}
+.info{
+    font-family: serif;
+    line-height: 1.8;
+}

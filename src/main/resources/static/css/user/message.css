@@ -1,0 +1,88 @@
+.member-container{
+    width: 500px;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+#list-users{
+    margin: 20px !important;
+    max-height: 450px;
+    overflow-y: auto;
+    background-color: azure;
+}
+
+.member-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#chat-messages{
+    background-color: beige;
+    margin-right: -40px;
+    margin-left: 20px;
+    border-radius: 12px;
+}
+
+.messages-container{
+    width: 900px;
+    margin-left: 30px;
+    border-radius: 12px;
+    background-color: beige;
+}
+
+#message-container{
+    margin-left: 30px;
+    margin-top: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.card-right {
+    background-color: #F2F2F2;
+    margin-left: auto;
+    margin-right: 25px;
+    margin-top: 25px;
+    border-radius: 12px;
+}
+
+.card-left {
+    background-color: #FFFFFF;
+    margin-right: auto;
+    margin-top: 25px;
+    border-radius: 12px;
+}
+
+#chat-actions{
+    box-shadow: none !important;
+}
+
+#member-name{
+    background-color: antiquewhite;
+    height: 50px;
+}
+
+#search-btn{
+    height: 50px;
+    margin-left: -20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#sender-avatar{
+    width: 60px;
+    height: 60px;
+}
+
+#delete-chat{
+    color: black;
+    font-size: 40px;
+    margin-top: -60px;
+}
+
+#message-options{
+    color: black;
+    border: none;
+    background: none;
+    font-size: 30px;
+}

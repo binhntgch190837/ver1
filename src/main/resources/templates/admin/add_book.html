@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Book</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet"
+  />
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+  <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/css/admin/add-book.css}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+  ></script>
+</head>
+<body>
+<div th:replace="~{admin/menu :: menuBar}"></div>
+<section class="home-section">
+  <nav>
+    <div class="sidebar-button">
+      <i class='bx bx-menu sidebarBtn'></i>
+      <span>Add New Book</span>
+    </div>
+    <button id="personal-profile">
+      <span style="border-right: 1px solid #ccc; padding-right: 10px;" th:text="${user_detail.username}"></span>
+      <span id="personal-role" th:text="${role}"></span>
+    </button>
+  </nav>
+  <div id="adding-content">
+    <div id="form-container">
+      <h1 style="text-align: center; margin-bottom: 5%;">Add New Book</h1>
+      <form th:action="@{/admin/add-book}" th:object="${book}" enctype="multipart/form-data" th:method="post">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="form-outline" style="margin-left: 10%;">
+              <label class="form-label" for="title"
+              >Enter Title:</label
+              >
+              <input
+                      type="text"
+                      id="title"
+                      style="border: 1px solid #4f4f4f; width: 400px;;"
+                      th:field="*{title}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}"
+              ></div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-outline">
+              <label class="form-label" for="author"
+              >Enter Author</label
+              >
+              <input
+                      type="text"
+                      id="author"
+                      style="border: 1px solid #4f4f4f; width: 400px;"
+                      th:field="*{author}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('author')}"
+                      th:errors="*{author}"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4 pb-2">
+            <div class="form-outline" style="margin-left: 10%; margin-top: -3%;">
+              <label class="form-label" for="book_image"
+              >Book Image</label
+              >
+              <input
+                      type="text"
+                      id="book_image"
+                      style="border: 1px solid #4f4f4f; width: 400px;"
+                      th:field="*{image_url}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px;"
+                      th:if="${#fields.hasErrors('image_url')}"
+                      th:errors="*{image_url}"
+              ></div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 pb-2">
+            <div class="form-outline" style="margin-left: 10%; margin-top: -3%;">
+              <label class="form-label" for="book_content" style="margin-left: -50px;"
+              >Book Content</label
+              >
+              <input
+                      type="text"
+                      id="book_content"
+                      style="border: 1px solid #4f4f4f; width: 400px; margin-left: -50px;"
+                      th:field="*{content}"
+                      class="form-control form-control-lg"
+              />
+              <div
+                      class="alert alert-warning"
+                      style="width: 400px; margin-left: -50px;"
+                      th:if="${#fields.hasErrors('content')}"
+                      th:errors="*{content}"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4 pb-2" style="margin-top: -2%; padding-left: 67px;">
+            <label for="category">Select Category</label>
+            <select class="form-control" id="category"
+                    th:field="*{category_name}" data-flag="true"
+                    style="width: 400px; height: 45px !important;"
+                    placeholder="Select a category"
+            >
+              <option value="" disabled selected>Select a category</option>
+              <th:block th:each="category : ${categories}">
+                <option th:value="${category}" th:text="${category}" style="display: block;"></option>
+              </th:block>
+            </select>
+            <div
+                    class="alert alert-warning"
+                    th:if="${#fields.hasErrors('category_name')}"
+                    th:errors="*{category_name}"
+            ></div>
+          </div>
+          <div class="col-md-6 mb-4" style="margin-top: -2%;">
+            <div class="form-outline">
+              <label class="form-label" for="page">Enter Book Page</label>
+              <input type="number" id="page" th:field="*{page}" class="form-control form-control-lg"
+                     style="border: 1px solid #4f4f4f; width: 400px; height: 45px !important;"/>
+              <div class="alert alert-warning" style="width: 400px;" th:if="${#fields.hasErrors('page')}"
+                   th:errors="*{page}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4" style="margin-top: -2%;">
+            <label for="date-input" style="margin-left: 10%;">Select Published Date:</label>
+            <div class="row d-flex justify-content-sm-center px-2">
+              <div class="form-group row">
+                <input type="text" id="date-input" class="datepicker mr-2" placeholder="Select Date" name="published_day"><br>
+              </div>
+            </div>
+            <div
+                    class="alert alert-warning"
+                    style="width: 400px; margin-left: 10%; margin-top: -3%;"
+                    th:if="${#fields.hasErrors('published_day')}"
+                    th:errors="*{published_day}"
+            ></div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <h6 class="mb-2 pb-2 pt-1">Select recommended age:</h6>
+            <div
+                    th:each="recommended_age: ${ages}"
+                    style="display: inline-block"
+            >
+              <div class="form-check form-check-inline">
+                <input
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="input-recommended-age"
+                        th:value="${recommended_age}"
+                        th:field="*{recommended_age}"
+                />
+                <label
+                        class="form-check-label"
+                        for="input-recommended-age"
+                        th:text="${recommended_age + '++'}"
+                ></label>
+              </div>
+            </div>
+            <div
+                    class="alert alert-warning"
+                    style="width: 400px;"
+                    th:if="${#fields.hasErrors('recommended_age')}"
+                    th:errors="*{recommended_age}"
+            ></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="description" style="margin-left: 5%;">Provide Some Description Of The Book:</label>
+          <div class="form-outline">
+            <textarea class="form-control" th:field="*{description}" id="description" rows="4"></textarea>
+          </div>
+          <div class="alert alert-warning" style="width: 875px; margin-left: 6%" th:if="${#fields.hasErrors('description')}"
+               th:errors="*{description}"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="adding-submission">Confirm Adding</button>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+          format: 'dd-mm-yyyy',
+          todayHighlight: true,
+          toggleActive: true
+      });
+    });
+  </script>
+</body>
+</html>

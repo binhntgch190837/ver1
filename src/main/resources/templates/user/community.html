@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Main menu</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/home.css}" />
+  <link rel="stylesheet" th:href="@{/css/community.css}" />
+  <link rel="stylesheet" th:href="@{/css/rating-modal.css}" />
+  <link rel="stylesheet" th:href="@{/css/comment.css}"/>
+  <link rel="stylesheet" th:href="@{/css/user/view-advertisement.css}">
+  <script th:src="@{/js/message-alert.js}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+<div th:replace="~{user/home_bar :: userHomepage}"></div>
+<header>
+  <section>
+    <div th:replace="~{user/advertisement_modal :: advertisement}"></div>
+    <div id="community-page" style="background-size: contain; background-image: url('https://i.pinimg.com/736x/23/cb/71/23cb7143f892c49537c8a55f5ee21988.jpg') !important;">
+      <div th:if="${message}" class="alert alert-info" id="flash-message">
+        <h1 id="danger-message" th:text="${message}"></h1>
+      </div>
+      <div id="community-welcome" style="text-align: center;">
+        <h1 style="color: aliceblue;">Thegioisach Feed</h1>
+      </div>
+      <div id="create-post">
+        <div id="user-avatar">
+          <img th:src="${user_detail.image_url}" class="user-image"/>
+        </div>
+        <div id="create-content">
+          <div class="input-group mb-3">
+            <button type="button" class="form-control" aria-label="Default"
+                    data-toggle="modal" data-target="#createPost"
+                    th:text="'Share what is on your mind, ' + ${user_detail.username} + '...'"
+                    aria-describedby="inputGroup-sizing-default" id="input-content"
+            ></button>
+            <div th:replace="~{user/create_post :: create-post}"></div>
+          </div>
+        </div>
+      </div>
+      <div id="post-container">
+        <div class="stay-advertise">
+          <a th:href="${second_ad.link_url}">
+            <h2 style="color: black; margin-top: 1vh;">Visit Now</h2>
+            <img class="advertisement-image" th:src="${second_ad.image_url}">
+            <h3 style="margin-top: 5%; margin-left: 2vh; margin-right: 2vh;">
+              <span class="advertisement-title" th:text="${second_ad.title}"></span>
+            </h3>
+          </a>
+        </div>
+        <ul class="list-posts">
+          <li th:each="post : ${posts}" class="post-storage">
+            <div class="community-post">
+              <div class="post-intro">
+                <div class="creator-image">
+                  <img th:src="${post.creator_detail.image_url}" style="width: 11.5vh; height: 11.5vh; border-radius: 50%;"/>
+                </div>
+                <div class="other-intro">
+                  <h1 style="font-family: sans-serif; font-size: 25px;" th:text="${post.creator_detail.username}"></h1>
+                  <h2 style="font-family: sans-serif; font-size: 15px; color: darkgrey;" th:text="${post.last_updated}"></h2>
+                </div>
+                <div class="btn-group dropright" id="post-actions" style="width: 50px !important;">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ...
+                  </button>
+                  <div class="dropdown-menu">
+                      <button class="dropdown-item edit-post-button" data-toggle="modal"
+                              th:data-target="${post.creator_detail.id == user_detail.id || post.creator_detail.role_name == 'admin' ? '#editPost' : '#forbiddenRequest'}"
+                      >
+                      Edit post
+                    </button>
+                    <button class="dropdown-item delete-post-button" data-toggle="modal"
+                            th:data-target="${post.creator_detail.id == user_detail.id || post.creator_detail.role_name == 'admin' ? '#deletePost' : '#forbiddenRequest'}">
+                      Delete post
+                    </button>
+                  </div>
+                  <div th:replace="~{user/edit_post :: edit-post}" th:with="post=${post}"></div>
+                  <div th:replace="~{user/delete_post :: delete-post}" th:with="post=${post}"></div>
+                  <div th:replace="~{forbidden_modal :: forbidden-request}"></div>
+                </div>
+              </div>
+              <div class="post-content">
+                <h1 style="font-family: sans-serif; font-size: 25px;" th:text="${post.title}"></h1>
+                <img th:if="${post.content_image != null}" th:src="${post.content_image}" class="post-image"/>
+                <p style="font-family: sans-serif; font-size: 15px;" th:utext="${post.content_text}"></p>
+              </div>
+              <div class="post-reaction">
+                <div class="rating-result" style="margin-left: 50px !important;">
+                  <div class="average-star">
+                    <h2 style="font-size: 30px; text-align: center;">Rating result</h2>
+                    <span th:each="rating : ${#vars['star_rating_' + post.post_id]}">
+                        <span th:class="${rating} == 'checked' ? 'fa fa-star checked full-star' : (${rating} == 'half' ? 'fa fa-star checked half-star' : 'fa fa-star no-star')"
+                              style="font-size: 50px; margin-top: 20px;"></span>
+                      </span>
+                  </div>
+                  <div class="people-rates">
+                    <h2 style="font-size: 80px;" th:text="${#vars['average_star_' + post.post_id]}"></h2>
+                    <h3 style="font-size: 15px; text-align: center;">of <span th:text="${#vars['people_rates_' + post.post_id]}"></span> user rates</h3>
+                  </div>
+                </div>
+                <div class="provide-reaction" style="padding-right: 30px;">
+                  <button type="button" class="btn btn-secondary"
+                          data-toggle="modal" th:data-target="'#ratingStar-' + ${post.id}"
+                          style="height: 40px; margin-right: 10px;"
+                  >
+                    Rate this post
+                  </button>
+                  <button type="button" class="btn btn-secondary"
+                          data-toggle="modal" th:data-target="'#leaveComment-' + ${post.id}"
+                          style="height: 40px; margin-right: 10px;"
+                  >
+                    Leave a comment
+                  </button>
+                  <button type="button" class="btn btn-secondary"
+                          data-toggle="modal" th:data-target="'#viewComment-' + ${post.id}"
+                          style="height: 40px; margin-right: 10px;"
+                  >
+                    View all comments
+                  </button>
+                  <button type="button" class="btn btn-secondary"
+                          data-toggle="modal" th:data-target="'#sharePost-' + ${post.id}"
+                          style="height: 40px; margin-right: 10px;"
+                  >
+                    Share
+                  </button>
+                  <div th:replace="~{user/rating_modal :: rating-star}" th:with="post=${post}"></div>
+                  <div th:replace="~{user/comment_form :: comment-form}" th:with="post=${post}"></div>
+                  <div th:replace="~{user/comment_list :: comment-list}" th:with="post=${post}"></div>
+                  <div th:replace="~{user/share_post :: share-post}" th:with="post=${post}"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="stay-advertise">
+          <a th:href="${third_ad.link_url}">
+            <h2 style="color: black; margin-top: 1vh;">Visit Now</h2>
+            <img class="advertisement-image" th:src="${third_ad.image_url}">
+            <h3 style="margin-top: 5%; margin-left: 2vh; margin-right: 2vh;">
+              <span class="advertisement-title" th:text="${third_ad.title}"></span>
+            </h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script th:src="@{/js/advertisement.js}"></script>
+</body>
+</html>

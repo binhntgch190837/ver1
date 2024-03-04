@@ -1,0 +1,15 @@
+.category-adding{
+    background-color: antiquewhite;
+    width: 800px;
+    height: 300px;
+    margin-left: 20%;
+}
+.category-adding-form{
+    display: flex;
+    margin-top: 6%;
+}
+#submit-btn{
+    height: 50px;
+    margin-left: 5%;
+    margin-top: 42px;
+}

@@ -1,0 +1,100 @@
+.comment-component{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.all-comments{
+    list-style: none;
+    border-radius: 8px;
+    background-color: aliceblue;
+    overflow-y: auto;
+    max-height: 500px;
+    min-height: 300px;
+}
+
+.comment-info{
+    width: 550px;
+    min-height: 85px;
+    margin-left: 6%;
+    margin-top: -2%;
+    display: flex;
+    background-color: antiquewhite;
+    border-radius: 12px;
+}
+
+.reply-branch{
+    font-size: 50px;
+    margin-left: 40px;
+}
+
+.reply-info{
+    margin-left: 3%;
+    width: 495px;
+    min-height: 85px;
+    background-color: antiquewhite;
+    border-radius: 12px;
+    display: flex;
+}
+
+.comment-option{
+    margin-left: 3%;
+}
+
+.comment-action{
+    margin-top: 10px;
+    display: flex;
+}
+
+#comment-avatar{
+    width: 65px;
+    height: 65px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#reply-avatar{
+    width: 65px;
+    height: 65px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#comment-text{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+#reply-text{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.comment-handles{
+    margin-left: 450px;
+    display: flex;
+}
+
+.handle-cmt{
+    color: slategrey;
+    font-size: 15px;
+    margin-top: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.reply-handles{
+    margin-left: 450px;
+    display: flex;
+}
+
+.handle-rep{
+    color: slategrey;
+    font-size: 15px;
+    margin-top: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

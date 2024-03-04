@@ -1,0 +1,10 @@
+#ad-title{
+    display: flex;
+    height: 45vh;
+    width: 40vh;
+}
+
+#ad-image{
+    width: 35vh;
+    height: 40vh;
+}
